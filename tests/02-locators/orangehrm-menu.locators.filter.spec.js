@@ -7,5 +7,10 @@ test('Validate MENU items by using FILTER Locator' , async ({page}) => {
     await page.getByRole('button' , {name: 'Login'}).click();
     // filter by text
     await page.getByRole('listitem').filter({hasText: 'Leave'}).click();
+    // filter by child/decendant
+    await page
+    .getByRole('listitem')
+    .filter({has: page.getByRole('link', {name: 'Dashboard'})})
+    .click();
     await page.waitForTimeout(10000);
 })
